@@ -6,7 +6,7 @@ import {vibrate} from './utils'
 export default function App() {
   return (
     <View style={styles.container}>
-      <Timer workTime={10} breakTime={10}/>
+      <Timer workTime={1500} breakTime={300}/>
     </View>
   );
 }
