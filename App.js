@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Timer time={1500} />
+      <Timer workTime={10} breakTime={10}/>
     </View>
   );
 }
@@ -13,6 +13,7 @@ class Timer extends React.Component{
   state = {
     time: 0,
     button: "Pause",
+    activity: "Work",
   }
 
   styles = StyleSheet.create({
@@ -52,8 +53,16 @@ class Timer extends React.Component{
     }
   }
 
+  resetBtnPress() {
+    if (this.state.activity == "Work"){
+      this.setState({time: this.props.workTime})
+    }else {
+      this.setState({time: this.props.breakTime})
+    }
+  }
+
   componentDidMount() {
-    this.setState({time: this.props.time})
+    this.setState({time: this.props.workTime})
     this.startTimer()
   }
 
@@ -63,6 +72,17 @@ class Timer extends React.Component{
 
   toTwoDigits(num){
     return ("0" + num).slice(-2);
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    if (nextState.time == 0) {
+      if (this.state.activity == "Work") {
+        this.setState({time: this.props.breakTime, activity: "Break"})
+      } else {
+        this.setState({time: this.props.workTime, activity: "Work"})
+      }
+    }
+    return true
   }
 
   getTime(){
@@ -76,12 +96,15 @@ class Timer extends React.Component{
   render(){
     return (
       <View>
+        <Text>
+          {this.state.activity + " Time!"}
+        </Text>
         <Text style={this.styles.clock}>
           {this.getTime()}
         </Text>
         <View style={this.styles.row}>
           <Button onPress={() => this.toggleBtnPress()} title={this.state.button}/>
-          <Button title="Reset"/>
+          <Button onPress={() => this.resetBtnPress() } title="Reset"/>
         </View>
       </View>
     )
