@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+import {vibrate} from './utils'
+
 export default function App() {
   return (
     <View style={styles.container}>
@@ -76,6 +78,7 @@ class Timer extends React.Component{
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     if (nextState.time == 0) {
+      vibrate()
       if (this.state.activity == "Work") {
         this.setState({time: this.props.breakTime, activity: "Break"})
       } else {
