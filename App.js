@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Timer></Timer>
+      <Timer/>
     </View>
   );
 }
@@ -26,8 +26,20 @@ class Timer extends React.Component{
     clearInterval(this.timeFunction)
   }
 
+  toTwoDigits(num){
+    return ("0" + num).slice(-2);
+  }
+
+  getTime(){
+    let time = this.state.time
+    const minutes = this.toTwoDigits(Math.floor(this.state.time/60))
+    const seconds = this.toTwoDigits(this.state.time  % 60)
+    time = `${minutes}:${seconds}`
+    return time
+  }
+
   render(){
-    return (<Text>{this.state.time}</Text>)
+    return (<Text>{this.getTime()}</Text>)
   }
 }
 
