@@ -5,7 +5,7 @@ It will vibrate to tell you when to take breaks or resume working, based on some
 determined values. Check out the [staff solution](#staff-solution) for a working
 version.
 
-##Checklist
+## Checklist  
 ✓ No library import other than a subset of the 4 below  
 ✓ Timer displays minutes and seconds in text  
 ✓ Timer counts down until it reaches 00:00   
