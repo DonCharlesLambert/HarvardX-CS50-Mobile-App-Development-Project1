@@ -6,12 +6,12 @@ determined values. Check out the [staff solution](#staff-solution) for a working
 version.
 
 ##Checklist
-✓ No library import other than a subset of the 4 below
-✓ Timer displays minutes and seconds in text
-✓ Timer counts down until it reaches 00:00 
-✓ Phone buzzes (if not on silent) when timer reaches 0
-✓ Timer switches between 25 minutes and 5 minutes 
-✓ Timer can go, pause and reset 
+✓ No library import other than a subset of the 4 below  
+✓ Timer displays minutes and seconds in text  
+✓ Timer counts down until it reaches 00:00   
+✓ Phone buzzes (if not on silent) when timer reaches 0  
+✓ Timer switches between 25 minutes and 5 minutes   
+✓ Timer can go, pause and reset  
 ✓ User can input time for work and break (Challenge)   
 
 ## Requirements
