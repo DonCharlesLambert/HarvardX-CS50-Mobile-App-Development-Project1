@@ -9,8 +9,6 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
-.expo-shared/
-package-lock.json
 
 # macOS
 .DS_Store
