@@ -7,12 +7,18 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  Image,
 } from 'react-native';
 import { vibrate } from './utils';
 
 export default function App() {
   return (
-    <ImageBackground source={{uri: "https://i.pinimg.com/474x/93/90/7c/93907c034fd00259d6afac112e9ddda6.jpg"}} style={styles.container}>
+    <ImageBackground
+      source={{
+        uri:
+          'https://i.pinimg.com/474x/93/90/7c/93907c034fd00259d6afac112e9ddda6.jpg',
+      }}
+      style={styles.container}>
       <Timer workTime={1500} breakTime={300} />
     </ImageBackground>
   );
@@ -27,12 +33,16 @@ class Timer extends React.Component {
     breakTime: 0,
     workText: '',
     breakText: '',
+    settings: false,
   };
 
   styles = StyleSheet.create({
     pomodoroTimer: {
       alignItems: 'center',
-      width: '70%',
+      width: '100%',
+      height: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
 
     clock: {
@@ -41,15 +51,15 @@ class Timer extends React.Component {
     },
 
     title: {
-      color: '#091428',
+      color: '#E2E2E4',
       fontWeight: 'bold',
-      fontSize: 32,
+      fontSize: 28,
     },
 
     buttonContainer: {
       paddingTop: '5%',
       flexDirection: 'row',
-      width: '100%',
+      width: '80%',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -74,18 +84,40 @@ class Timer extends React.Component {
       height: 25,
       textAlign: 'center',
       margin: '2%',
-      width: '100%',
+      width: 250,
       backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      borderRadius: '5px',
     },
 
     clockBox: {
-      width: '100%',
+      width: '70%',
       padding: '5%',
       backgroundColor: 'rgba(197, 175, 162, 0.6)',
       borderRadius: '15%',
       alignItems: 'center',
     },
+
+    settingsButton: {
+      position: 'absolute',
+      right: 0,
+      bottom: 0,
+    },
+
+    settingsImage: {
+      width: '50px',
+      height: '50px',
+      resizeMode: 'contain',
+    },
+
+    settingsText: {
+      color: 'white',
+      fontSize: 16,
+    }
   });
+
+  settingsImage = {
+    uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/768px-Windows_Settings_app_icon.png',
+  };
 
   constructor() {
     super();
@@ -114,6 +146,10 @@ class Timer extends React.Component {
     } else {
       this.startTimer();
     }
+  }
+
+  toggleSettings() {
+    this.setState((prevState) => ({ settings: !prevState.settings }));
   }
 
   resetBtnPress() {
@@ -186,11 +222,38 @@ class Timer extends React.Component {
     return time;
   }
 
+  Settings = (props) => {
+    if (this.state.settings) {
+      return (
+        <View>
+          <TextInput
+            style={this.styles.textbox}
+            placeholder="Enter Work Time (s)"
+            text={this.state.workText}
+            onChangeText={(text) => this.setState({ workText: text })}
+            onEndEditing={(e) => this.setWorkTime()}
+          />
+          <TextInput
+            style={this.styles.textbox}
+            placeholder="Enter Break Time (s)"
+            text={this.state.breakText}
+            onChangeText={(text) => this.setState({ breakText: text })}
+            onEndEditing={(e) => this.setBreakTime()}
+          />
+        </View>
+      );
+    } else {
+      return null;
+    }
+  };
+
   render() {
     return (
       <View style={this.styles.pomodoroTimer}>
         <View style={this.styles.clockBox}>
-          <Text style={this.styles.title}>{this.state.activity + ' Time!'}</Text>
+          <Text style={this.styles.title}>
+            {this.state.activity + ' Time!'}
+          </Text>
           <Text style={this.styles.clock}>{this.getTime()}</Text>
         </View>
 
@@ -208,21 +271,16 @@ class Timer extends React.Component {
             <Text style={this.styles.btnText}>Reset</Text>
           </TouchableOpacity>
         </View>
-        {/* 
-        <TextInput
-          style={this.styles.textbox}
-          placeholder="Enter Work Time (s)"
-          text={this.state.workText}
-          onChangeText={(text) => this.setState({ workText: text })}
-          onEndEditing={(e) => this.setWorkTime()}
-        />
-        <TextInput
-          style={this.styles.textbox}
-          placeholder="Enter Break Time (s)"
-          text={this.state.breakText}
-          onChangeText={(text) => this.setState({ breakText: text })}
-          onEndEditing={(e) => this.setBreakTime()}
-        />*/}
+        <this.Settings />
+        <TouchableOpacity
+          style={this.styles.settingsButton}
+          onPress={() => this.toggleSettings()}>
+          <Image
+            style={this.styles.settingsImage}
+            source={this.settingsImage}
+          />
+          <Text style={this.styles.settingsText}>Settings</Text>
+        </TouchableOpacity>
       </View>
     );
   }
