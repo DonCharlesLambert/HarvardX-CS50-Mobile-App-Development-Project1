@@ -163,7 +163,6 @@ class Timer extends React.Component {
 
   setWorkTime() {
     if (!isNaN(this.state.workText) && this.state.workText != 0) {
-      console.log('yes');
       if (this.state.activity == 'Work') {
         this.pauseTimer();
       }
@@ -179,7 +178,7 @@ class Timer extends React.Component {
         this.pauseTimer();
       }
       this.setState({ breakTime: this.state.breakText }, () =>
-        this.setBreakTime()
+        this.resetBtnPress()
       );
       this.resetBtnPress();
     }

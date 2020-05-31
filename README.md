@@ -1,3 +1,4 @@
+
 # Project 1 - Pomodoro Timer
 For this project, you'll be implementing a Pomodoro timer. This timer will help
 people trying to use the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique).
@@ -5,7 +6,13 @@ It will vibrate to tell you when to take breaks or resume working, based on some
 determined values. Check out the [staff solution](#staff-solution) for a working
 version.
 
-## Checklist  
+## My solution & Checklist  
+<div align=center>
+<img src="https://github.com/HarvardX-React-Native/Project1/blob/master/assets/ss1.jpeg?raw=true" alt="The app during work time couting down 25 minutes" width=30%/>
+<img src="https://github.com/HarvardX-React-Native/Project1/blob/master/assets/ss2.jpeg?raw=true" alt="The app during break time couting down 5 minutes" width=30%/>
+<img src="https://github.com/HarvardX-React-Native/Project1/blob/master/assets/ss3.jpeg?raw=true" alt="Changing the work time using settings" width=30%/>
+</div>
+
 ✓ No library import other than a subset of the 4 below  
 ✓ Timer displays minutes and seconds in text  
 ✓ Timer counts down until it reaches 00:00   
